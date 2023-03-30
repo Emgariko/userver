@@ -90,3 +90,6 @@ if (USERVER_FEATURE_RABBITMQ)
     add_subdirectory(rabbitmq_service)
     add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-rabbitmq_service)
 endif()
+
+add_subdirectory(ws_sample)
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-ws_sample)
