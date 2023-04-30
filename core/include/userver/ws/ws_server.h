@@ -52,14 +52,16 @@ struct Response {
 };
 
 struct WsHandlerBase {
-  WsHandlerBase(std::unique_ptr<engine::io::RwBase>&& socket): socket_(std::move(socket)) {
-    LOG_INFO() << "Upgrade has been performed";
+  WsHandlerBase() = default;
 
+  void AddSocket(std::unique_ptr<engine::io::RwBase>&& socket, std::string&& secWebSocketKey) {
 
+//    key_to_socket.insert({std::move(secWebSocketKey), std::move(socket)});
+//    utils::Async("");
   }
 
  private:
-  std::unique_ptr<engine::io::RwBase> socket_;
+//  std::unordered_map<std::string, std::unique_ptr<engine::io::RwBase>> key_to_socket;
 };
 
 struct WsServer : public components::TcpAcceptorBase {

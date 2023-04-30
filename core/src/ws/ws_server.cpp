@@ -325,11 +325,16 @@ Response WsServer::HandleRequest(const Request& request) {
   resp.headers["Sec-WebSocket-Accept"] = WebsocketSecAnswer(secWebsocketKey);
   resp.keepalive = true;
   resp.upgrade_connection =
-      [this](std::unique_ptr<engine::io::RwBase> io) {
+      [this, secWebsocketKey_ = secWebsocketKey](std::unique_ptr<engine::io::RwBase>&& io) mutable {
 //        this->ProcessConnection(std::make_shared<WebSocketConnectionImpl>(
 //            std::move(io), std::move(headers), *remoteAddr, this->config));
 //        this->handler.socket_ = std::move(io);
-          this->handler = WsHandlerBase(std::move(io));
+          if (!this->handler) {
+            this->handler = WsHandlerBase();
+          }
+          this->handler->AddSocket(std::move(io), std::move(secWebsocketKey_));
+
+          LOG_INFO() << "Upgrade has been performed";
       };
   return resp;
 }
