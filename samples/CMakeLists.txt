@@ -68,6 +68,9 @@ if (USERVER_FEATURE_POSTGRESQL)
 
     add_subdirectory(postgres-support)
     add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-postgres-support)
+
+    add_subdirectory(http_chat)
+    add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-http_chat)
 endif()
 
 add_subdirectory(production_service)
