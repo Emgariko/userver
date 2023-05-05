@@ -68,6 +68,9 @@ if (USERVER_FEATURE_POSTGRESQL)
 
     add_subdirectory(postgres-support)
     add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-postgres-support)
+
+    add_subdirectory(http_chat)
+    add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-http_chat)
 endif()
 
 add_subdirectory(production_service)
@@ -90,3 +93,6 @@ if (USERVER_FEATURE_RABBITMQ)
     add_subdirectory(rabbitmq_service)
     add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-rabbitmq_service)
 endif()
+
+add_subdirectory(ws_sample)
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}-ws_sample)
