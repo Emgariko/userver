@@ -1,6 +1,6 @@
 project(userver-samples-ws_sample CXX)
 
-add_executable(${PROJECT_NAME} "sample.cpp" http_chat.cpp)
+add_executable(${PROJECT_NAME} "sample.cpp")
 target_link_libraries(${PROJECT_NAME} userver-core)
 
 userver_testsuite_add(
